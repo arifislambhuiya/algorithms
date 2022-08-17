@@ -1,22 +1,31 @@
 #include<bits/stdc++.h>
+using namespace std;
 
-void swap(int* a,int* b){
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
+// void swap(int* a,int* b){
+//     int temp = *a;
+//     *a = *b;
+//     *b = temp;
+// }
 
 int partition(int arr[],int low,int high){
     int pivot = arr[high];
-    int i = (low - 1);
-    for (int j = low; j<=high-1;j++){
+    int i = low - 1;
+    for (int j = low; j<high;j++){
         if (arr[j]<pivot){
             i++;
-            swap(&arr[i],&arr[j]);
+            // swap(&arr[i],&arr[j]);
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
         }
     }
-    swap(&arr[i+1],&arr[high]);
-    return (i+1);
+    // swap(&arr[i+1],&arr[high]);
+    i++;
+    int temp = arr[i];
+    arr[i] = pivot;
+    arr[high] = temp;
+
+    return i;
 }
 
  void quickSort(int arr[], int low,int high){
@@ -29,7 +38,7 @@ int partition(int arr[],int low,int high){
 
 void printArr(int arr[],int n){
     for(int i = 0;i<n;i++){
-     std::cout<<arr[i]<<" "<<std::endl;
+     cout<<arr[i]<<" ";
     }
 }
 
